@@ -1,6 +1,6 @@
 import Job from "../models/Job.js";
 
-const getAllJobs = async (_, res) => {
+export const getAllJobs = async (_, res) => {
   try {
     const jobs = await Job.find();
     res.status(200).json(jobs);
@@ -9,7 +9,7 @@ const getAllJobs = async (_, res) => {
   }
 };
 
-const createJob = async (req, res) => {
+export const createJob = async (req, res) => {
   try {
     const { company, position, status, thankYouNote } = req.body;
     const newJob = new Job({
@@ -25,7 +25,7 @@ const createJob = async (req, res) => {
   }
 };
 
-const getJobById = async (req, res) => {
+export const getJobById = async (req, res) => {
   try {
     const job = await Job.findById(req.params.id);
     if (!job) {
@@ -37,7 +37,7 @@ const getJobById = async (req, res) => {
   }
 };
 
-const updateJobById = async (req, res) => {
+export const updateJobById = async (req, res) => {
   try {
     const { id } = req.params;
     const { company, position, status, thankYouNote } = req.body;
@@ -56,7 +56,7 @@ const updateJobById = async (req, res) => {
   }
 };
 
-const deleteJobById = async (req, res) => {
+export const deleteJobById = async (req, res) => {
   try {
     const { id } = req.params;
     const job = await Job.findByIdAndDelete(id);
@@ -67,12 +67,4 @@ const deleteJobById = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
-
-export default {
-  getAllJobs,
-  createJob,
-  getJobById,
-  updateJobById,
-  deleteJobById,
 };

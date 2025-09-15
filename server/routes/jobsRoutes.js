@@ -1,11 +1,11 @@
-import express from "express";
 import {
   getAllJobs,
   createJob,
   getJobById,
   updateJobById,
   deleteJobById,
-} from "../controllers/JobsController.js";
+} from "../controllers/jobsControllers.js";
+import express from "express";
 
 const jobsRoutes = express.Router();
 
